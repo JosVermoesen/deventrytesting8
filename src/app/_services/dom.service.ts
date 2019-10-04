@@ -36,7 +36,7 @@ export class DomService {
 
     return of(
       this.domEntries.sort((a, b) => {
-        return (b.domMandateStartDate = a.domMandateStartDate);
+        return (b.domDummy = a.domDummy);
       })
     );
   }

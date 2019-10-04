@@ -7,4 +7,5 @@ export interface DomEntry {
   domClientName: string;
   domClientIban: string;
   domPaymentReference: string;
+  domDummy?: number;
 }

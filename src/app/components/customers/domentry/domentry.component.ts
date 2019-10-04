@@ -28,10 +28,10 @@ export class DomEntryComponent implements OnInit {
   constructor(private domService: DomService, private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.bsConfig = {
-      containerClass: 'theme-blue',
-      dateInputFormat: 'DD-MM-YYYY'
-    };
+    /* this.bsConfig = {
+      containerClass: 'theme-dark-blue',
+      dateInputFormat: 'DD/MM/YYYY'
+    }; */
 
     // Subscribe to the selectedLog observable
     this.domService.selectedDomEntry.subscribe((entry: DomEntry) => {
@@ -54,7 +54,6 @@ export class DomEntryComponent implements OnInit {
         });
         this.isNew = false;
       } else {
-        this.btnAddOrEdit = 'Add';
         this.clearState();
       }
     });
@@ -88,6 +87,7 @@ export class DomEntryComponent implements OnInit {
 
   clearState() {
     this.isNew = true;
+    this.btnAddOrEdit = 'Add';
     this.readyForExport = false;
 
     this.domEntryForm = this.fb.group({
