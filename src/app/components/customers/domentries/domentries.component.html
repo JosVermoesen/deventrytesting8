@@ -1,0 +1,19 @@
+<ul class="list-group" *ngIf="loaded && domEntries.length > 0">
+  <li *ngFor="let entry of domEntries" [class.list-group-item-secondary]="selectedDomEntry === entry"
+    class="list-group-item d-flex justify-content-between align-items-center">
+    <a (click)="onSelect(entry)" href="#">{{ entry.domMandateId }}</a>
+    <a>{{ entry.domPaymentReference }}</a>
+
+    <span>{{ entry.domAmount | currency:'EUR' }}</span>
+
+    <i (click)="onDelete(entry)" class="fa fa-remove"></i>
+  </li>
+</ul>
+
+<div *ngIf="loaded && domEntries.length == 0">
+  <h5>There are no domentries</h5>
+</div>
+
+<div *ngIf="!loaded">
+  <h5>Loading session...</h5>
+</div>
