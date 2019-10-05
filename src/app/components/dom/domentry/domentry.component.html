@@ -1,0 +1,53 @@
+<div class="card card-body mb-3">
+  <div>
+    <tabset #staticTabs>
+      <tab heading="Entry">
+        <form [formGroup]="domEntryForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <input formControlName="id" hidden>
+            <input formControlName="amount" type="number" class="form-control" placeholder="Add an amount">
+            <input formControlName="mandateId" type="text" class="form-control" placeholder="Add mandate id">
+
+             <input formControlName="mandateStartDate" type="date" required pattern="\d{4}-\d{2}-\d{2}" class="form-control"
+              placeholder="Add mandate starting date">
+
+            <!-- <input class="form-control" type="date" class="form-control" #datepickerYMD="bsDatepicker" bsDatepicker
+              formControlName="mandateStartDate"
+              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue' }"
+              placeholder=" Add mandate starting date"> -->
+
+            <input formControlName="clientName" type="text" class="form-control" placeholder="Add client name">
+            <input formControlName="clientIban" type="text" class="form-control" placeholder="Add iban number">
+            <input formControlName="endToEndReference" type="text" class="form-control"
+              placeholder="End-to-End Reference (optional)">
+            <input formControlName="communication" type="text" class="form-control"
+              placeholder="Communication (optional)">
+          </div>
+
+          <div class="form-group">
+            <input type="submit" [value]="btnAddOrEdit" [disabled]="!domEntryForm.valid" class="btn btn-primary">
+            <button (click)="clearState()" type="button" class="btn btn-warning">Clear</button>
+            <button (click)="clearEntry()" type="button" class="btn btn-danger">Remove All</button>
+            <button (click)="onExport()" type="button" class="btn btn-success">XML Export {{ entryCount }}</button>
+          </div>
+        </form>
+      </tab>
+
+      <tab heading="Entries List">
+        <app-domentries></app-domentries>
+      </tab>
+
+      <tab heading="Entries Json">
+        <pre class="card card-block card-header">{{ domJson | json }}</pre>
+      </tab>
+
+      <tab heading="DomTesting">
+        <app-domexport></app-domexport>
+      </tab>
+
+      <tab heading="Settings">
+        <app-domsettings></app-domsettings>
+      </tab>
+    </tabset>
+  </div>
+</div>

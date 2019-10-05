@@ -1,10 +1,10 @@
 <ul class="list-group" *ngIf="loaded && domEntries.length > 0">
   <li *ngFor="let entry of domEntries" [class.list-group-item-secondary]="selectedDomEntry === entry"
     class="list-group-item d-flex justify-content-between align-items-center">
-    <a (click)="onSelect(entry)" href="#">{{ entry.domMandateId }}</a>
-    <a>{{ entry.domPaymentReference }}</a>
+    <a (click)="onSelect(entry)" href="#">{{ entry.clientName }}</a>
+    <a>{{ entry.clientIban }}</a>
 
-    <span>{{ entry.domAmount | currency:'EUR' }}</span>
+    <span>{{ entry.amount | currency:'EUR' }}</span>
 
     <i (click)="onDelete(entry)" class="fa fa-remove"></i>
   </li>

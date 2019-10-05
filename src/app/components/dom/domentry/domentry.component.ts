@@ -1,9 +1,10 @@
-import { DomService } from './../../../_services/dom.service';
-import { DomEntry } from './../../../_models/domEntry';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsDatepickerConfig, TabsetComponent } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Uuid } from 'src/app/_functions/uuid';
+
+import { Uuid } from '../../../_functions/uuid';
+import { DomService } from '../../../_services/dom.service';
+import { DomEntry } from '../../../_models/domEntry';
 
 @Component({
   selector: 'app-domentry',
@@ -16,6 +17,7 @@ export class DomEntryComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   warning: string;
   domJson: DomEntry[];
+  entryCount: number;
 
   domEntryForm: FormGroup;
 
@@ -41,16 +43,16 @@ export class DomEntryComponent implements OnInit {
 
         this.domEntryForm = this.fb.group({
           id: [entry.id],
-          domReference: [entry.domReference, Validators.required],
-          domAmount: [
-            entry.domAmount,
+          endToEndReference: [entry.endToEndReference],
+          amount: [
+            entry.amount,
             [Validators.required, Validators.min(0.01), Validators.max(3000)]
           ],
-          domMandateId: [entry.domMandateId, Validators.required],
-          domMandateStartDate: [entry.domMandateStartDate, Validators.required],
-          domClientName: [entry.domClientName, Validators.required],
-          domClientIban: [entry.domClientIban],
-          domPaymentReference: [entry.domPaymentReference, Validators.required]
+          mandateId: [entry.mandateId, Validators.required],
+          mandateStartDate: [entry.mandateStartDate, Validators.required],
+          clientName: [entry.clientName, Validators.required],
+          clientIban: [entry.clientIban],
+          communication: [entry.communication]
         });
         this.isNew = false;
       } else {
@@ -92,19 +94,24 @@ export class DomEntryComponent implements OnInit {
 
     this.domEntryForm = this.fb.group({
       id: Uuid(),
-      domReference: [null, Validators.required],
-      domAmount: [
+      endToEndReference: [''],
+      amount: [
         null,
         [Validators.required, Validators.min(0.01), Validators.max(3000)]
       ],
-      domMandateId: [null, Validators.required],
-      domMandateStartDate: [null, Validators.required],
-      domClientName: [null, Validators.required],
-      domClientIban: [null],
-      domPaymentReference: [null, Validators.required]
+      mandateId: [null, Validators.required],
+      mandateStartDate: [null, Validators.required],
+      clientName: [null, Validators.required],
+      clientIban: [null],
+      communication: ['']
     });
     this.domService.clearState();
     this.domJson = JSON.parse(localStorage.getItem('domEntries'));
+    if (this.domJson == null) {
+      this.entryCount = 0;
+    } else {
+      this.entryCount = this.domJson.length;
+    }
   }
 
   clearEntry() {

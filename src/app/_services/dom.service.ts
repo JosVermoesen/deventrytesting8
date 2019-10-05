@@ -9,13 +9,13 @@ export class DomService {
 
   private domEntrieSource = new BehaviorSubject<DomEntry>({
     id: null,
-    domReference: null,
-    domAmount: null,
-    domMandateId: null,
-    domMandateStartDate: null,
-    domClientName: null,
-    domClientIban: null,
-    domPaymentReference: null
+    endToEndReference: '',
+    amount: null,
+    mandateId: null,
+    mandateStartDate: null,
+    clientName: null,
+    clientIban: null,
+    communication: ''
   });
 
   selectedDomEntry = this.domEntrieSource.asObservable();
@@ -36,7 +36,7 @@ export class DomService {
 
     return of(
       this.domEntries.sort((a, b) => {
-        return (b.domDummy = a.domDummy);
+        return (b.dummy = a.dummy);
       })
     );
   }

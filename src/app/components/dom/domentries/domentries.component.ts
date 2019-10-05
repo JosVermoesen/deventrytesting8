@@ -1,5 +1,5 @@
-import { DomService } from './../../../_services/dom.service';
-import { DomEntry } from './../../../_models/domEntry';
+import { DomService } from '../../../_services/dom.service';
+import { DomEntry } from '../../../_models/domEntry';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -20,13 +20,13 @@ export class DomEntriesComponent implements OnInit {
       if (clear) {
         this.selectedDomEntry = {
           id: '',
-          domReference: '',
-          domAmount: 0,
-          domMandateId: '',
-          domMandateStartDate: '',
-          domClientName: '',
-          domClientIban: '',
-          domPaymentReference: ''
+          endToEndReference: '',
+          amount: 0,
+          mandateId: '',
+          mandateStartDate: '',
+          clientName: '',
+          clientIban: '',
+          communication: ''
         };
       }
     });

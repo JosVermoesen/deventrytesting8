@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
-import { DomEntriesComponent } from './components/customers/domentries/domentries.component';
-import { DomEntryComponent } from './components/customers/domentry/domentry.component';
+import { DomEntriesComponent } from './components/dom/domentries/domentries.component';
+import { DomEntryComponent } from './components/dom/domentry/domentry.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,8 +17,9 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DomComponent } from './components/dom/dom.component';
+import { DomExportComponent } from './components/dom/domexport/domexport.component';
 import { DomService } from './_services/dom.service';
+import { DomSettingsComponent } from './components/dom/domsettings/domsettings.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DomService } from './_services/dom.service';
     JournalEntriesComponent,
     DomEntryComponent,
     DomEntriesComponent,
-    DomComponent
+    DomExportComponent,
+    DomSettingsComponent
   ],
   imports: [
     BrowserModule,
