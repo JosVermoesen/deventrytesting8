@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BsDatepickerConfig, TabsetComponent } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { BsDatepickerConfig, TabsetComponent } from 'ngx-bootstrap';
 
 import { Uuid } from '../../../_functions/uuid';
 import { DomService } from '../../../_services/dom.service';

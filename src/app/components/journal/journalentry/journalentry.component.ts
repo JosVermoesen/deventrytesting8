@@ -1,9 +1,11 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { BsDatepickerConfig, TabsetComponent } from 'ngx-bootstrap';
+
+import { Uuid } from '../../../_functions/uuid';
 import { JournalEntry } from '../../../_models/JournalEntry';
 import { JournalService } from '../../../_services/journal.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Uuid } from '../../../_functions/uuid';
-import { BsDatepickerConfig } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-journalentry',
@@ -11,6 +13,8 @@ import { BsDatepickerConfig } from 'ngx-bootstrap';
   styleUrls: ['./journalentry.component.css']
 })
 export class JournalEntryComponent implements OnInit {
+  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+
   bsConfig: Partial<BsDatepickerConfig>;
   warning: string;
   bookingJson: JournalEntry[];
@@ -77,6 +81,7 @@ export class JournalEntryComponent implements OnInit {
       (entry: JournalEntry) => {
         if (entry.id !== null) {
           this.btnAddOrEdit = 'Edit';
+          this.selectTab(0);
 
           this.journalEntryForm = this.fb.group({
             id: [entry.id],
@@ -124,6 +129,7 @@ export class JournalEntryComponent implements OnInit {
         }
       }
     }
+    this.selectTab(1);
 
     // Clear state
     this.clearState();
@@ -191,5 +197,9 @@ export class JournalEntryComponent implements OnInit {
     if (confirm('Are you sure?')) {
       // send to booking API
     }
+  }
+
+  selectTab(tabId: number) {
+    this.staticTabs.tabs[tabId].active = true;
   }
 }

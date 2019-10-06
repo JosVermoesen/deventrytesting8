@@ -1,6 +1,6 @@
 <div class="card card-body mb-3">
   <div>
-    <tabset>
+    <tabset #staticTabs>
       <tab heading="{{ dateAsHeader | date: 'dd/MM/yyyy' }} {{ tabHeading }}">
         <div *ngIf="!entryHeaderLocked">
           <form [formGroup]="journalEntryHeaderForm" (ngSubmit)="onHeaderLock()">
@@ -49,9 +49,11 @@
           </form>
           <a>{{ warning }} </a>
         </div>
+      </tab>
+      <tab heading="Entries List">
         <app-journalentries></app-journalentries>
       </tab>
-      <tab heading="Journal Entry (Json)">
+      <tab heading="Entries Json">
         <pre class="card card-block card-header">{{ bookingJson | json }}</pre>
       </tab>
     </tabset>

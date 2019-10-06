@@ -1,6 +1,7 @@
+import { Component, OnInit } from '@angular/core';
+
 import { DomService } from '../../../_services/dom.service';
 import { DomEntry } from '../../../_models/domEntry';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-domentries',
