@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+import { BsModalRef } from 'ngx-bootstrap';
+
 import * as moment from 'moment';
 
 import { DomEntry } from '../../../_models/domEntry';
@@ -13,6 +15,9 @@ import { DomCompany } from './../../../_models/domCompany';
   styleUrls: ['./domexport.component.css']
 })
 export class DomExportComponent implements OnInit {
+  title: string;
+  closeBtnName: string;
+
   templateDom: any;
   templateClient: any;
   templateEachClient: any;
@@ -39,7 +44,11 @@ export class DomExportComponent implements OnInit {
   domVarData: string[];
   domEntryData: string[];
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {}
+  constructor(
+    public bsModalRef: BsModalRef,
+    private http: HttpClient,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.http

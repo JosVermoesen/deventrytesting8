@@ -48,7 +48,7 @@ import {
     ModalModule.forRoot()
   ],
   providers: [JournalService, DomService, BsModalRef],
-  entryComponents: [DomSettingsComponent],
+  entryComponents: [DomSettingsComponent, DomExportComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

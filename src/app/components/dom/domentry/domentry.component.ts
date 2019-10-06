@@ -1,12 +1,18 @@
-import { DomSettingsComponent } from './../domsettings/domsettings.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { BsDatepickerConfig, TabsetComponent, BsModalRef, BsModalService } from 'ngx-bootstrap';
+import {
+  BsDatepickerConfig,
+  TabsetComponent,
+  BsModalRef,
+  BsModalService
+} from 'ngx-bootstrap';
 
 import { Uuid } from '../../../_functions/uuid';
 import { DomService } from '../../../_services/dom.service';
 import { DomEntry } from '../../../_models/domEntry';
+import { DomSettingsComponent } from './../domsettings/domsettings.component';
+import { DomExportComponent } from './../domexport/domexport.component';
 
 @Component({
   selector: 'app-domentry',
@@ -74,19 +80,20 @@ export class DomEntryComponent implements OnInit {
   } */
 
   openModalSettings() {
-    /* const initialState = {
-      list: [
-        'Open a modal with component',
-        'Pass your data',
-        'Do something else',
-        '...'
-      ],
-      title: 'Modal with component'
-    }; */
     const initialState = {
       title: 'Direct Debit Settings'
     };
     this.bsModalRef = this.modalService.show(DomSettingsComponent, {
+      initialState
+    });
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
+  openModalExport() {
+    const initialState = {
+      title: 'Direct Debit Export XML'
+    };
+    this.bsModalRef = this.modalService.show(DomExportComponent, {
       initialState
     });
     this.bsModalRef.content.closeBtnName = 'Close';
@@ -110,12 +117,6 @@ export class DomEntryComponent implements OnInit {
     // Clear state
     this.clearState();
     // this.ngOnInit();
-  }
-
-  onExport() {
-    if (confirm('Are you sure?')) {
-      // send to booking API
-    }
   }
 
   clearState() {
@@ -149,6 +150,7 @@ export class DomEntryComponent implements OnInit {
     if (confirm('Are you sure?')) {
       localStorage.removeItem('domEntries');
       this.domJson = null;
+      this.entryCount = 0;
     }
   }
 }

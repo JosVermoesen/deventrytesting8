@@ -30,7 +30,7 @@
             <input type="submit" class="btn btn-primary mr-1" [disabled]="!domEntryForm.valid" [value]="btnAddOrEdit">
             <button type="button" class="btn btn-warning mr-1" (click)="clearState()">Clear</button>
             <button type="button" class="btn btn-danger mr-1" (click)="clearEntry()">Remove All</button>
-            <button type="button" class="btn btn-success" (click)="onExport()">XML Export
+            <button type="button" class="btn btn-success mr-1" [disabled]="entryCount==0" (click)="openModalExport()">XML Export
               {{ entryCount }}</button>
 
             <button type="button" class="btn btn-primary" (click)="openModalSettings()">Settings</button>
@@ -49,10 +49,6 @@
 
       <tab heading="DomTesting">
         <app-domexport></app-domexport>
-      </tab>
-
-      <tab heading="Settings">
-        <app-domsettings></app-domsettings>
       </tab>
     </tabset>
   </div>
