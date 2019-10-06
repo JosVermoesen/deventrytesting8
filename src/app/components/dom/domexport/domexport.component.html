@@ -2,7 +2,7 @@
   <form [formGroup]="domExportForm" (ngSubmit)="generateDomXml()">
     <div class="form-group">
       <input type="text" class="form-control" formControlName="domDescription" placeholder="App Info Description">
-      <input type="date" class="form-control" formControlName="domDateCreated" placeholder="Creation date">
+      <input readonly type="text" class="form-control" formControlName="domDateCreated" placeholder="Creation date">
       <input type="text" class="form-control" formControlName="domInfoText" placeholder="Xml About">
       <input type="date" class="form-control" formControlName="domMemoDate" placeholder="Memo Date">
     </div>

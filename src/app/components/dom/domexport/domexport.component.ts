@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+import * as moment from 'moment';
+
 import { DomEntry } from '../../../_models/domEntry';
 import { DomCompany } from './../../../_models/domCompany';
 
@@ -73,9 +75,10 @@ export class DomExportComponent implements OnInit {
       'domMemoDate' // 2019-05-09
     ];
 
+    const momentDate = moment().format();
     this.domExportForm = this.fb.group({
       domDescription: ['VsoftTool-3.10-all-OK', Validators.required],
-      domDateCreated: [Date.now(), Validators.required],
+      domDateCreated: [momentDate, Validators.required],
       domInfoText: ['Verzekeringen 2019 12 van 12', Validators.required],
       domMemoDate: [null, Validators.required]
     });
