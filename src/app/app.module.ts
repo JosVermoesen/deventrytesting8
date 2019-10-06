@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DomExportComponent } from './components/dom/domexport/domexport.component';
 import { DomService } from './_services/dom.service';
 import { DomSettingsComponent } from './components/dom/domsettings/domsettings.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DomSettingsComponent } from './components/dom/domsettings/domsettings.c
     ButtonsModule.forRoot(),
     TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
   providers: [JournalService, DomService],
   bootstrap: [AppComponent]
