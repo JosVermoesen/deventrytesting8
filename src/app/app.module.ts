@@ -13,13 +13,14 @@ import { JournalService } from './_services/journal.service';
 import { JournalEntryComponent } from './components/journal/journalentry/journalentry.component';
 import { JournalEntriesComponent } from './components/journal/journalentries/journalentries.component';
 
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DomExportComponent } from './components/dom/domexport/domexport.component';
 import { DomService } from './_services/dom.service';
 import { DomSettingsComponent } from './components/dom/domsettings/domsettings.component';
+
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
@@ -35,16 +36,17 @@ import { ModalModule } from 'ngx-bootstrap/modal';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     ButtonsModule.forRoot(),
     TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    BrowserAnimationsModule,
     ModalModule.forRoot()
   ],
   providers: [JournalService, DomService],
+  entryComponents: [DomSettingsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

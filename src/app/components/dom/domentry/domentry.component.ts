@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { DomSettingsComponent } from './../domsettings/domsettings.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { BsDatepickerConfig, TabsetComponent } from 'ngx-bootstrap';
@@ -15,7 +16,8 @@ import { DomEntry } from '../../../_models/domEntry';
 })
 export class DomEntryComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-  modalRef: BsModalRef;
+  // modalRef: BsModalRef;
+  bsModalRef: BsModalRef;
 
   bsConfig: Partial<BsDatepickerConfig>;
   warning: string;
@@ -68,8 +70,16 @@ export class DomEntryComponent implements OnInit {
     });
   }
 
-  openModal(template: TemplateRef<any>) {
+  /* openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  } */
+
+  openModalSettings() {
+    const initialState = {
+      title: 'Direct Debit Settings'
+    };
+    this.bsModalRef = this.modalService.show(DomSettingsComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
   selectTab(tabId: number) {

@@ -9,6 +9,9 @@ import { DomCompany } from './../../../_models/domCompany';
   styleUrls: ['./domsettings.component.css']
 })
 export class DomSettingsComponent implements OnInit {
+  title: string;
+  closeBtnName: string;
+
   domSettingsForm: FormGroup;
   domSettings: DomCompany;
 
