@@ -5,13 +5,12 @@
         <div *ngIf="!entryHeaderLocked">
           <form [formGroup]="journalEntryHeaderForm" (ngSubmit)="onHeaderLock()">
             <div class="form-group">
-              <input formControlName="description" type="text" class="form-control" placeholder="Add a description">
+              <input type="text" class="form-control" formControlName="description" placeholder="Add a description">
 
-              <input class="form-control" class="form-control" #datepickerYMD="bsDatepicker" bsDatepicker
-                formControlName="date" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-blue' }"
-                placeholder=" Add a date">
+              <input bsDatepicker class="form-control" formControlName="date" #datepickerYMD="bsDatepicker"
+                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-blue' }" placeholder=" Add a date">
             </div>
-            <input type="submit" value="Lock" [disabled]="!journalEntryHeaderForm.valid" class="btn btn-primary">
+            <input type="submit" class="btn btn-primary" value="Lock" [disabled]="!journalEntryHeaderForm.valid">
           </form>
         </div>
 
@@ -22,30 +21,30 @@
               <input formControlName="description" hidden>
               <input formControlName="date" hidden>
 
-              <div class="btn-group" btnRadioGroup formControlName="dcOption">
-                <label btnRadio="D" class="btn btn-primary" tabindex="0" role="button">Debit</label>
-                <label btnRadio="C" class="btn btn-primary" tabindex="0" role="button">Credit</label>
-                <label btnRadio="T" class="btn btn-primary" tabindex="0" role="button">Debit/Credit</label>
+              <div btnRadioGroup class="btn-group" formControlName="dcOption">
+                <label btnRadio="D" class="btn btn-primary btn-sm" tabindex="0" role="button">Debit</label>
+                <label btnRadio="C" class="btn btn-primary btn-sm" tabindex="0" role="button">Credit</label>
+                <label btnRadio="T" class="btn btn-primary btn-sm" tabindex="0" role="button">Debit/Credit</label>
                 <div *ngIf="!readyForBooking">
-                  <button (click)="checkBalance()" type="button" class="btn btn-warning">Square Check:
+                  <button type="button" class=" ml-1 btn btn-warning btn-sm" (click)="checkBalance()">Square Check:
                     {{ totalSolde  | currency:'EUR'}}</button>
                 </div>
                 <div *ngIf="readyForBooking">
-                  <button (click)="onBooking()" type="button" class="btn btn-success">Book Entry</button>
+                  <button type="button" class="ml-1 btn btn-success" (click)="onBooking()">Book Entry</button>
                 </div>
               </div>
 
-              <input formControlName="amount" type="text" class="form-control" placeholder="Add an amount">
-              <input formControlName="bNumber" type="text" class="form-control" placeholder="Add an account number">
+              <input type="text" class="form-control " formControlName="amount" placeholder="Add an amount">
+              <input type="text" class="form-control " formControlName="bNumber" placeholder="Add an account number">
               <div *ngIf="journalEntryForm.value.dcOption == 'T'">
-                <input formControlName="tNumber" type="text" class="form-control"
+                <input type="text" class="form-control " formControlName="tNumber"
                   placeholder="Add a D/C contra-accountnumber">
               </div>
             </div>
 
-            <input type="submit" value="Add" [disabled]="!journalEntryForm.valid" class="btn btn-primary">
-            <button (click)="clearState()" type="button" class="btn btn-warning">Reset</button>
-            <button (click)="clearEntry()" type="button" class="btn btn-danger">Remove All</button>
+            <input type="submit" class="btn btn-primary mr-1" value="Add" [disabled]="!journalEntryForm.valid">
+            <button type="button" class="btn btn-warning mr-1" (click)="clearState()">Reset</button>
+            <button type="button" class="btn btn-danger" (click)="clearEntry()">Remove All</button>
 
           </form>
           <a>{{ warning }} </a>

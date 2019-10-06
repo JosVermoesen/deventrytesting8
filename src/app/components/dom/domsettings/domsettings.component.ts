@@ -33,7 +33,7 @@ export class DomSettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.domSettingsForm.valid) {      
+    if (this.domSettingsForm.valid) {
       this.domSettings = this.domSettingsForm.value;
       localStorage.setItem('domSettings', JSON.stringify(this.domSettings));
     }

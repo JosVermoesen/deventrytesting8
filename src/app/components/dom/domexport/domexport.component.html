@@ -1,5 +1,15 @@
-<p>
-  dom works!
-</p>
+<div class="card card-body mb-3">
+  <form [formGroup]="domExportForm" (ngSubmit)="generateDomXml()">
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="domDescription" placeholder="App Info Description">
+      <input type="date" class="form-control" formControlName="domDateCreated" placeholder="Creation date">
+      <input type="text" class="form-control" formControlName="domInfoText" placeholder="Xml About">
+      <input type="date" class="form-control" formControlName="domMemoDate" placeholder="Memo Date">
+    </div>
 
-<button class="btn btn-success" (click)="generateDomXml()">Generate Dom XML</button>
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary mr-1" value="generate Dom XML" [disabled]="!domExportForm.valid">
+      <button type="button" class="btn btn-warning" (click)="clearState()">Clear</button>
+    </div>
+  </form>
+</div>

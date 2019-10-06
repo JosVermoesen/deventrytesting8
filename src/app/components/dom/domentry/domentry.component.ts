@@ -51,7 +51,7 @@ export class DomEntryComponent implements OnInit {
           mandateId: [entry.mandateId, Validators.required],
           mandateStartDate: [entry.mandateStartDate, Validators.required],
           clientName: [entry.clientName, Validators.required],
-          clientIban: [entry.clientIban],
+          clientIban: [entry.clientIban, Validators.required],
           communication: [entry.communication]
         });
         this.isNew = false;
@@ -102,7 +102,7 @@ export class DomEntryComponent implements OnInit {
       mandateId: [null, Validators.required],
       mandateStartDate: [null, Validators.required],
       clientName: [null, Validators.required],
-      clientIban: [null],
+      clientIban: [null, Validators.required],
       communication: ['']
     });
     this.domService.clearState();

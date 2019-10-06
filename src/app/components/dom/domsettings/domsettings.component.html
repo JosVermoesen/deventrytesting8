@@ -1,21 +1,21 @@
 <div class="card card-body mb-3">
   <form [formGroup]="domSettingsForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <input formControlName="name" type="text" class="form-control" placeholder="Creditor name">
-      <input formControlName="enterpriseNumber" type="text" class="form-control"
+      <input formControlName="name" type="text" class="form-control " placeholder="Creditor name">
+      <input formControlName="enterpriseNumber" type="text" class="form-control "
         placeholder="Creditor enterprise number">
-      <input formControlName="country" type="text" class="form-control" placeholder="Creditor Country code">
-      <input formControlName="street" type="text" class="form-control" placeholder="Creditor street and number">
-      <input formControlName="pcPlace" type="text" class="form-control" placeholder="Creditor postal code and city">
-      <input formControlName="iban" type="text" class="form-control" placeholder="Creditor IBAN">
-      <input formControlName="bic" type="text" class="form-control" placeholder="Creditor BIC">
-      <input formControlName="domId" type="text" class="form-control" placeholder="Creditor DOM Id">
+      <input type="text" class="form-control" formControlName="country" placeholder="Creditor Country code">
+      <input type="text" class="form-control" formControlName="street" placeholder="Creditor street and number">
+      <input type="text" class="form-control" formControlName="pcPlace" placeholder="Creditor postal code and city">
+      <input type="text" class="form-control" formControlName="iban" placeholder="Creditor IBAN">
+      <input type="text" class="form-control" formControlName="bic" placeholder="Creditor BIC">
+      <input type="text" class="form-control" formControlName="domId" placeholder="Creditor DOM Id">
     </div>
 
     <div class="form-group">
-      <input type="submit" value="Save" [disabled]="!domSettingsForm.valid" class="btn btn-primary">
-      <button (click)="clearState()" type="button" class="btn btn-warning">Clear</button>
-      <button (click)="onRead()" type="button" class="btn btn-success">Read</button>
+      <input type="submit" class="btn btn-primary mr-1" value="Save" [disabled]="!domSettingsForm.valid">
+      <button type="button" class="btn btn-warning mr-1" (click)="clearState()">Clear</button>
+      <button type="button" class="btn btn-success" (click)="onRead()">Read</button>
     </div>
   </form>
 </div>
