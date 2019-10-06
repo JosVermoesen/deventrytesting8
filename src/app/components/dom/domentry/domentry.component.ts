@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { BsDatepickerConfig, TabsetComponent } from 'ngx-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Uuid } from '../../../_functions/uuid';
 import { DomService } from '../../../_services/dom.service';
@@ -14,6 +15,7 @@ import { DomEntry } from '../../../_models/domEntry';
 })
 export class DomEntryComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+  modalRef: BsModalRef;
 
   bsConfig: Partial<BsDatepickerConfig>;
   warning: string;
@@ -28,7 +30,11 @@ export class DomEntryComponent implements OnInit {
   readyForExport = false;
   countEntries: number;
 
-  constructor(private domService: DomService, private fb: FormBuilder) {}
+  constructor(
+    private domService: DomService,
+    private fb: FormBuilder,
+    private modalService: BsModalService
+  ) {}
 
   ngOnInit() {
     /* this.bsConfig = {
@@ -60,6 +66,10 @@ export class DomEntryComponent implements OnInit {
         this.clearState();
       }
     });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   selectTab(tabId: number) {
