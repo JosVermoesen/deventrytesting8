@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { BsModalRef } from 'ngx-bootstrap';
+
 import { DomCompany } from './../../../_models/domCompany';
 
 @Component({
@@ -15,7 +17,7 @@ export class DomSettingsComponent implements OnInit {
   domSettingsForm: FormGroup;
   domSettings: DomCompany;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(public bsModalRef: BsModalRef, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.domSettings = JSON.parse(localStorage.getItem('domSettings'));

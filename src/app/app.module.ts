@@ -17,11 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DomExportComponent } from './components/dom/domexport/domexport.component';
 import { DomService } from './_services/dom.service';
 import { DomSettingsComponent } from './components/dom/domsettings/domsettings.component';
-
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import {
+  ButtonsModule,
+  TabsModule,
+  BsDatepickerModule,
+  ModalModule,
+  BsModalRef
+} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     JournalEntriesComponent,
     DomEntryComponent,
     DomEntriesComponent,
-    DomExportComponent,
-    DomSettingsComponent
+    DomSettingsComponent,
+    DomExportComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot()
   ],
-  providers: [JournalService, DomService],
+  providers: [JournalService, DomService, BsModalRef],
   entryComponents: [DomSettingsComponent],
   bootstrap: [AppComponent]
 })
