@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { BsModalRef } from 'ngx-bootstrap';
+import { saveAs } from 'file-saver';
 
 import * as moment from 'moment';
 
@@ -86,9 +87,9 @@ export class DomExportComponent implements OnInit {
 
     const momentDate = moment().format();
     this.domExportForm = this.fb.group({
-      domDescription: ['VsoftTool-3.10-all-OK', Validators.required],
+      domDescription: ['VsoftCDDTool-1.00', Validators.required],
       domDateCreated: [momentDate, Validators.required],
-      domInfoText: ['Verzekeringen 2019 12 van 12', Validators.required],
+      domInfoText: [null, Validators.required],
       domMemoDate: [null, Validators.required]
     });
 
@@ -106,9 +107,9 @@ export class DomExportComponent implements OnInit {
   clearState() {
     const momentDate = moment().format();
     this.domExportForm = this.fb.group({
-      domDescription: ['VsoftTool-3.10-all-OK', Validators.required],
+      domDescription: ['VsoftCDDTool-1.00', Validators.required],
       domDateCreated: [momentDate, Validators.required],
-      domInfoText: ['Verzekeringen 2019 12 van 12', Validators.required],
+      domInfoText: [null, Validators.required],
       domMemoDate: [null, Validators.required]
     });
   }
@@ -223,6 +224,16 @@ export class DomExportComponent implements OnInit {
         this.templateClients
       );
       console.log(this.templateDom);
+      const blob = new Blob([this.templateDom], {
+        type: 'text/plain;charset=utf-8'
+      });
+      saveAs(
+        blob,
+        this.domExportForm.value.domDescription +
+          '-memo_' +
+          this.domExportForm.value.domMemoDate +
+          '.xml'
+      );
     }
   }
 }
