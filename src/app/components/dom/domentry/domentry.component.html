@@ -11,26 +11,20 @@
             <input type="date" class="form-control" required pattern="\d{4}-\d{2}-\d{2}"
               formControlName="mandateStartDate" placeholder="Add mandate starting date">
 
-            <!-- <input class="form-control " type="date" class="form-control " #datepickerYMD="bsDatepicker" bsDatepicker
-              formControlName="mandateStartDate"
-              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-dark-blue' }"
-              placeholder=" Add mandate starting date"> -->
-
-
-
             <input type="text" class="form-control" formControlName="clientName" placeholder="Add client name">
             <input type="text" class="form-control" formControlName="clientIban" placeholder="Add iban number">
             <input type="text" class="form-control" formControlName="endToEndReference"
-              placeholder="End-to-End Reference (optional)">
+              placeholder="End-to-End Reference">
             <input type="text" class="form-control " formControlName="communication"
-              placeholder="Communication (optional)">
+              placeholder="Communication">
           </div>
 
           <div class="form-group">
             <input type="submit" class="btn btn-primary mr-1" [disabled]="!domEntryForm.valid" [value]="btnAddOrEdit">
-            <button type="button" class="btn btn-warning mr-1" (click)="clearState()">Clear</button>
+            <button type="button" class="btn btn-warning mr-1" (click)="clearState()">Reset</button>
             <button type="button" class="btn btn-danger mr-1" (click)="clearEntry()">Remove All</button>
-            <button type="button" class="btn btn-success mr-1" [disabled]="entryCount==0" (click)="openModalExport()">XML Export
+            <button type="button" class="btn btn-success mr-1" [disabled]="entryCount==0"
+              (click)="openModalExport()">Export
               {{ entryCount }}</button>
 
             <button type="button" class="btn btn-primary" (click)="openModalSettings()">Settings</button>
@@ -46,23 +40,6 @@
       <tab heading="Entries Json">
         <pre class="card card-block card-header">{{ domJson | json }}</pre>
       </tab>
-
-      <tab heading="DomTesting">
-        <app-domexport></app-domexport>
-      </tab>
     </tabset>
   </div>
 </div>
-
-<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    This is a modal.
-  </div>
-</ng-template> -->

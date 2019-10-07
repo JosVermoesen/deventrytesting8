@@ -7,8 +7,8 @@
             <div class="form-group">
               <input type="text" class="form-control" formControlName="description" placeholder="Add a description">
 
-              <input bsDatepicker class="form-control" formControlName="date" #datepickerYMD="bsDatepicker"
-                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-blue' }" placeholder=" Add a date">
+              <input type="date" class="form-control" required pattern="\d{4}-\d{2}-\d{2}" formControlName="date"
+                placeholder="Add booking date">
             </div>
             <input type="submit" class="btn btn-primary" value="Lock" [disabled]="!journalEntryHeaderForm.valid">
           </form>
@@ -54,7 +54,7 @@
         <app-journalentries></app-journalentries>
       </tab>
       <tab heading="Entries Json">
-        <pre class="card card-block card-header">{{ bookingJson | json }}</pre>
+        <pre class="card card-block card-header">{{ entriesJson | json }}</pre>
       </tab>
     </tabset>
   </div>

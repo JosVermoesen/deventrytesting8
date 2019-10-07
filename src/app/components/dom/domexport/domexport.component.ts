@@ -104,9 +104,10 @@ export class DomExportComponent implements OnInit {
   }
 
   clearState() {
+    const momentDate = moment().format();
     this.domExportForm = this.fb.group({
       domDescription: ['VsoftTool-3.10-all-OK', Validators.required],
-      domDateCreated: [Date.now(), Validators.required],
+      domDateCreated: [momentDate, Validators.required],
       domInfoText: ['Verzekeringen 2019 12 van 12', Validators.required],
       domMemoDate: [null, Validators.required]
     });

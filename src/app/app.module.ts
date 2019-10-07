@@ -1,3 +1,5 @@
+import { DomSaveComponent } from './components/dom/domsave/domsave.component';
+import { DomLoadComponent } from './components/dom/domload/domload.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DomEntriesComponent } from './components/dom/domentries/domentries.component';
 import { DomEntryComponent } from './components/dom/domentry/domentry.component';
@@ -34,7 +36,9 @@ import {
     DomEntryComponent,
     DomEntriesComponent,
     DomSettingsComponent,
-    DomExportComponent
+    DomExportComponent,
+    DomLoadComponent,
+    DomSaveComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,12 @@ import {
     ModalModule.forRoot()
   ],
   providers: [JournalService, DomService, BsModalRef],
-  entryComponents: [DomSettingsComponent, DomExportComponent],
+  entryComponents: [
+    DomSettingsComponent,
+    DomExportComponent,
+    DomLoadComponent,
+    DomSaveComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

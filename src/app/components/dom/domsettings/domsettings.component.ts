@@ -26,7 +26,7 @@ export class DomSettingsComponent implements OnInit {
     } else {
       this.domSettingsForm = this.fb.group({
         name: [this.domSettings.name, Validators.required],
-        enterpriseNumber: [this.domSettings.enterpriseNumber],
+        enterpriseNumber: [this.domSettings.enterpriseNumber, Validators.required],
         country: [this.domSettings.country, Validators.required],
         street: [this.domSettings.street, Validators.required],
         pcPlace: [this.domSettings.pcPlace, Validators.required],
@@ -48,7 +48,7 @@ export class DomSettingsComponent implements OnInit {
     this.domSettings = JSON.parse(localStorage.getItem('domSettings'));
     this.domSettingsForm = this.fb.group({
       name: [this.domSettings.name, Validators.required],
-      enterpriseNumber: [this.domSettings.enterpriseNumber],
+      enterpriseNumber: [this.domSettings.enterpriseNumber, Validators.required],
       country: [this.domSettings.country, Validators.required],
       street: [this.domSettings.street, Validators.required],
       pcPlace: [this.domSettings.pcPlace, Validators.required],
@@ -61,7 +61,7 @@ export class DomSettingsComponent implements OnInit {
   clearState() {
     this.domSettingsForm = this.fb.group({
       name: ['', Validators.required],
-      enterpriseNumber: [''],
+      enterpriseNumber: ['', Validators.required],
       country: ['', Validators.required],
       street: ['', Validators.required],
       pcPlace: ['', Validators.required],

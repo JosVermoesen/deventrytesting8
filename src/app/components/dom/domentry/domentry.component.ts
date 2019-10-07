@@ -21,7 +21,6 @@ import { DomExportComponent } from './../domexport/domexport.component';
 })
 export class DomEntryComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-  // modalRef: BsModalRef;
   bsModalRef: BsModalRef;
 
   bsConfig: Partial<BsDatepickerConfig>;
@@ -44,11 +43,7 @@ export class DomEntryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    /* this.bsConfig = {
-      containerClass: 'theme-dark-blue',
-      dateInputFormat: 'DD/MM/YYYY'
-    }; */
-
+    this.domJson = JSON.parse(localStorage.getItem('domEntries'));
     // Subscribe to the selectedLog observable
     this.domService.selectedDomEntry.subscribe((entry: DomEntry) => {
       if (entry.id !== null) {
@@ -57,7 +52,7 @@ export class DomEntryComponent implements OnInit {
 
         this.domEntryForm = this.fb.group({
           id: [entry.id],
-          endToEndReference: [entry.endToEndReference],
+          endToEndReference: [entry.endToEndReference, Validators.required],
           amount: [
             entry.amount,
             [Validators.required, Validators.min(0.01), Validators.max(3000)]
@@ -66,7 +61,7 @@ export class DomEntryComponent implements OnInit {
           mandateStartDate: [entry.mandateStartDate, Validators.required],
           clientName: [entry.clientName, Validators.required],
           clientIban: [entry.clientIban, Validators.required],
-          communication: [entry.communication]
+          communication: [entry.communication, Validators.required]
         });
         this.isNew = false;
       } else {
@@ -74,10 +69,6 @@ export class DomEntryComponent implements OnInit {
       }
     });
   }
-
-  /* openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  } */
 
   openModalSettings() {
     const initialState = {
@@ -113,10 +104,7 @@ export class DomEntryComponent implements OnInit {
       }
     }
     this.selectTab(1);
-
-    // Clear state
     this.clearState();
-    // this.ngOnInit();
   }
 
   clearState() {
@@ -126,7 +114,7 @@ export class DomEntryComponent implements OnInit {
 
     this.domEntryForm = this.fb.group({
       id: Uuid(),
-      endToEndReference: [''],
+      endToEndReference: [null, Validators.required],
       amount: [
         null,
         [Validators.required, Validators.min(0.01), Validators.max(3000)]
@@ -135,7 +123,7 @@ export class DomEntryComponent implements OnInit {
       mandateStartDate: [null, Validators.required],
       clientName: [null, Validators.required],
       clientIban: [null, Validators.required],
-      communication: ['']
+      communication: [null, Validators.required]
     });
     this.domService.clearState();
     this.domJson = JSON.parse(localStorage.getItem('domEntries'));

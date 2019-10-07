@@ -17,7 +17,7 @@ export class JournalEntryComponent implements OnInit {
 
   bsConfig: Partial<BsDatepickerConfig>;
   warning: string;
-  bookingJson: JournalEntry[];
+  entriesJson: JournalEntry[];
 
   journalEntryForm: FormGroup;
 
@@ -41,11 +41,7 @@ export class JournalEntryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.bsConfig = {
-      containerClass: 'theme-blue',
-      dateInputFormat: 'DD-MM-YYYY'
-    };
-
+    this.entriesJson = JSON.parse(localStorage.getItem('journalEntries'));
     // First try to grab description and date if there is a session available
     if (localStorage.getItem('journalEntries') === null) {
       this.tabHeading = 'New Daybook Entry';
@@ -53,17 +49,17 @@ export class JournalEntryComponent implements OnInit {
       this.dateAsHeader = null;
       this.entryHeaderLocked = false;
     } else {
-      this.bookingJson = JSON.parse(localStorage.getItem('journalEntries'));
-      if (this.bookingJson.length === 0) {
+      this.entriesJson = JSON.parse(localStorage.getItem('journalEntries'));
+      if (this.entriesJson.length === 0) {
         this.tabHeading = 'New Daybook Entry';
         localStorage.removeItem('journalEntries');
         this.descriptionAsHeader = null;
         this.dateAsHeader = null;
         this.entryHeaderLocked = false;
       } else {
-        this.descriptionAsHeader = this.bookingJson[0].description;
-        this.tabHeading = this.bookingJson[0].description;
-        this.dateAsHeader = this.bookingJson[0].date;
+        this.descriptionAsHeader = this.entriesJson[0].description;
+        this.tabHeading = this.entriesJson[0].description;
+        this.dateAsHeader = this.entriesJson[0].date;
         this.entryHeaderLocked = true;
         this.tabHeading = this.descriptionAsHeader;
         if (this.tabHeading.length > 13) {
@@ -128,6 +124,7 @@ export class JournalEntryComponent implements OnInit {
           this.journalService.updateJournalEntry(journalEntry);
         }
       }
+      this.entriesJson = JSON.parse(localStorage.getItem('journalEntries'));
     }
     this.selectTab(1);
 
@@ -156,18 +153,18 @@ export class JournalEntryComponent implements OnInit {
   clearEntry() {
     if (confirm('Are you sure?')) {
       localStorage.removeItem('journalEntries');
-      this.bookingJson = null;
+      this.entriesJson = null;
       this.entryHeaderLocked = false;
     }
   }
 
   checkBalance() {
-    this.bookingJson = JSON.parse(localStorage.getItem('journalEntries'));
-    if (this.bookingJson.length !== 0) {
+    this.entriesJson = JSON.parse(localStorage.getItem('journalEntries'));
+    if (this.entriesJson.length !== 0) {
       this.countEntries = 0;
       this.totalSolde = 0;
-      while (this.countEntries < this.bookingJson.length) {
-        const thisEntry: JournalEntry = this.bookingJson[this.countEntries];
+      while (this.countEntries < this.entriesJson.length) {
+        const thisEntry: JournalEntry = this.entriesJson[this.countEntries];
         const value = Number(thisEntry.amount);
         switch (thisEntry.dcOption.substring(0, 1)) {
           case 'D':

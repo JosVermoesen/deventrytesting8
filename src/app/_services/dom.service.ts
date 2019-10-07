@@ -9,13 +9,13 @@ export class DomService {
 
   private domEntrieSource = new BehaviorSubject<DomEntry>({
     id: null,
-    endToEndReference: '',
+    endToEndReference: null,
     amount: null,
     mandateId: null,
     mandateStartDate: null,
     clientName: null,
     clientIban: null,
-    communication: ''
+    communication: null
   });
 
   selectedDomEntry = this.domEntrieSource.asObservable();

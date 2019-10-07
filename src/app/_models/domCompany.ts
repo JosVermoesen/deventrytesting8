@@ -1,6 +1,6 @@
 export interface DomCompany {
   name: string;
-  enterpriseNumber?: string;
+  enterpriseNumber: string;
   country: string;
   street: string;
   pcPlace: string;
