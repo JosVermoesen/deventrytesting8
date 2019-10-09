@@ -28,10 +28,10 @@ export class DomService {
   }
 
   getDomEntries(): Observable<DomEntry[]> {
-    if (localStorage.getItem('domEntries') === null) {
+    if (localStorage.getItem('domEntries_Template') === null) {
       this.domEntries = [];
     } else {
-      this.domEntries = JSON.parse(localStorage.getItem('domEntries'));
+      this.domEntries = JSON.parse(localStorage.getItem('domEntries_Template'));
     }
 
     return of(
@@ -49,7 +49,7 @@ export class DomService {
     this.domEntries.unshift(domEntry);
 
     // Add to local storage
-    localStorage.setItem('domEntries', JSON.stringify(this.domEntries));
+    localStorage.setItem('domEntries_Template', JSON.stringify(this.domEntries));
   }
 
   updateDomEntry(domEntry: DomEntry) {
@@ -61,7 +61,7 @@ export class DomService {
     this.domEntries.unshift(domEntry);
 
     // Update local storage
-    localStorage.setItem('domEntries', JSON.stringify(this.domEntries));
+    localStorage.setItem('domEntries_Template', JSON.stringify(this.domEntries));
   }
 
   deleteDomEntry(domEntry: DomEntry) {
@@ -72,7 +72,7 @@ export class DomService {
     });
 
     // Delete from local storage
-    localStorage.setItem('domEntries', JSON.stringify(this.domEntries));
+    localStorage.setItem('domEntries_Template', JSON.stringify(this.domEntries));
   }
 
   clearState() {

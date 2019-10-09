@@ -123,7 +123,7 @@ export class DomExportComponent implements OnInit {
         this.domExportForm.value.domMemoDate
       ];
 
-      this.domData = JSON.parse(localStorage.getItem('domSettings'));
+      this.domData = JSON.parse(localStorage.getItem('domSettings_Template'));
       if (this.domData == null) {
         console.log('empty settings');
       } else {
@@ -140,7 +140,7 @@ export class DomExportComponent implements OnInit {
         this.domData.domId
       ];
 
-      this.domEntries = JSON.parse(localStorage.getItem('domEntries'));
+      this.domEntries = JSON.parse(localStorage.getItem('domEntries_Template'));
       if (this.domEntries == null) {
         this.domCount = 0;
       } else {
@@ -233,6 +233,12 @@ export class DomExportComponent implements OnInit {
           '-memo_' +
           this.domExportForm.value.domMemoDate +
           '.xml'
+      );
+      // Save a log
+      const logDate = Date();
+      localStorage.setItem(
+        'domLogXML_' + logDate,
+        JSON.stringify(this.domEntries)
       );
     }
   }

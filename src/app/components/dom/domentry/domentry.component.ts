@@ -1,12 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import {
-  BsDatepickerConfig,
-  TabsetComponent,
-  BsModalRef,
-  BsModalService
-} from 'ngx-bootstrap';
+import { TabsetComponent, BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 import { Uuid } from '../../../_functions/uuid';
 import { DomService } from '../../../_services/dom.service';
@@ -23,7 +18,6 @@ export class DomEntryComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
   bsModalRef: BsModalRef;
 
-  bsConfig: Partial<BsDatepickerConfig>;
   warning: string;
   domJson: DomEntry[];
   entryCount: number;
@@ -43,12 +37,12 @@ export class DomEntryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.domJson = JSON.parse(localStorage.getItem('domEntries'));
+    this.domJson = JSON.parse(localStorage.getItem('domEntries_Template'));
     // Subscribe to the selectedLog observable
     this.domService.selectedDomEntry.subscribe((entry: DomEntry) => {
       if (entry.id !== null) {
         this.btnAddOrEdit = 'Edit';
-        this.selectTab(0);
+        this.selectTab(1);
 
         this.domEntryForm = this.fb.group({
           id: [entry.id],
@@ -103,7 +97,7 @@ export class DomEntryComponent implements OnInit {
         this.domService.updateDomEntry(domEntry);
       }
     }
-    this.selectTab(1);
+    this.selectTab(0);
     this.clearState();
   }
 
@@ -126,19 +120,11 @@ export class DomEntryComponent implements OnInit {
       communication: [null, Validators.required]
     });
     this.domService.clearState();
-    this.domJson = JSON.parse(localStorage.getItem('domEntries'));
+    this.domJson = JSON.parse(localStorage.getItem('domEntries_Template'));
     if (this.domJson == null) {
       this.entryCount = 0;
     } else {
       this.entryCount = this.domJson.length;
-    }
-  }
-
-  clearEntry() {
-    if (confirm('Are you sure?')) {
-      localStorage.removeItem('domEntries');
-      this.domJson = null;
-      this.entryCount = 0;
     }
   }
 }

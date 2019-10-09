@@ -20,7 +20,7 @@ export class DomSettingsComponent implements OnInit {
   constructor(public bsModalRef: BsModalRef, private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.domSettings = JSON.parse(localStorage.getItem('domSettings'));
+    this.domSettings = JSON.parse(localStorage.getItem('domSettings_Template'));
     if (this.domSettings === null) {
       this.clearState();
     } else {
@@ -40,12 +40,12 @@ export class DomSettingsComponent implements OnInit {
   onSubmit() {
     if (this.domSettingsForm.valid) {
       this.domSettings = this.domSettingsForm.value;
-      localStorage.setItem('domSettings', JSON.stringify(this.domSettings));
+      localStorage.setItem('domSettings_Template', JSON.stringify(this.domSettings));
     }
   }
 
   onRead() {
-    this.domSettings = JSON.parse(localStorage.getItem('domSettings'));
+    this.domSettings = JSON.parse(localStorage.getItem('domSettings_Template'));
     this.domSettingsForm = this.fb.group({
       name: [this.domSettings.name, Validators.required],
       enterpriseNumber: [this.domSettings.enterpriseNumber, Validators.required],

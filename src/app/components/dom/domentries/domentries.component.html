@@ -1,17 +1,39 @@
-<ul class="list-group" *ngIf="loaded && domEntries.length > 0">
-  <li *ngFor="let entry of domEntries" [class.list-group-item-secondary]="selectedDomEntry === entry"
-    class="list-group-item d-flex justify-content-between align-items-center">
-    <a (click)="onSelect(entry)" href="#">{{ entry.clientName }}</a>
-    <a>{{ entry.clientIban }}</a>
-
-    <span>{{ entry.amount | currency:'EUR' }}</span>
-
-    <i (click)="onDelete(entry)" class="fa fa-remove"></i>
-  </li>
-</ul>
-
 <div *ngIf="loaded && domEntries.length == 0">
-  <h5>There are no domentries</h5>
+  <pre class="card card-block card-header">Template is empty</pre>
+</div>
+
+<div class="form-group">
+  <ul class="list-group" *ngIf="loaded && domEntries.length > 0">
+    <li *ngFor="let entry of domEntries" [class.list-group-item-secondary]="selectedDomEntry === entry"
+      class="list-group-item d-flex justify-content-between align-items-center">
+      <a (click)="onSelect(entry)" href="#">{{ entry.clientName }}</a>
+      <a>{{ entry.clientIban }}</a>
+
+      <span>{{ entry.amount | currency:'EUR' }}</span>
+
+      <i (click)="onDelete(entry)" class="fa fa-remove"></i>
+    </li>
+  </ul>
+
+</div>
+
+<div class="form-group">
+  <div *ngIf="!locationReload">
+    <button type="button" class="btn btn-warning mr-1" (click)="entriesModalLoad()">Import</button>
+    <button type="button" class="btn btn-primary mr-1" [disabled]="!domEntries.length"
+      (click)="entriesModalSave()">Export As</button>
+    <button type="button" class="btn btn-danger" [disabled]="!domEntries.length" (click)="clearEntry()">Delete</button>
+  </div>
+
+  <div *ngIf="locationReload">
+    <button type="button" class="btn btn-warning mr-1" (click)="entriesModalLoad()">Import</button>
+    <button type="button" class="btn btn-primary mr-1" [disabled]="!domEntries.length" (click)="entriesModalSave()">Save
+      As</button>
+    <button class="btn btn-danger" type="button" disabled>
+      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+      Delete</button>
+  </div>
+  <button type="button" class="btn btn-warning" (click)="testing()">Testing</button>
 </div>
 
 <div *ngIf="!loaded">

@@ -1,42 +1,38 @@
 <div class="card card-body mb-3">
   <div>
     <tabset #staticTabs>
-      <tab heading="Entry">
-        <form [formGroup]="domEntryForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <input formControlName="id" hidden>
-            <input type="number" class="form-control" formControlName="amount" placeholder="Add an amount">
-            <input type="text" class="form-control" formControlName="mandateId" placeholder="Add mandate id">
-
-            <input type="date" class="form-control" required pattern="\d{4}-\d{2}-\d{2}"
-              formControlName="mandateStartDate" placeholder="Add mandate starting date">
-
-            <input type="text" class="form-control" formControlName="clientName" placeholder="Add client name">
-            <input type="text" class="form-control" formControlName="clientIban" placeholder="Add iban number">
-            <input type="text" class="form-control" formControlName="endToEndReference"
-              placeholder="End-to-End Reference">
-            <input type="text" class="form-control " formControlName="communication"
-              placeholder="Communication">
-          </div>
-
-          <div class="form-group">
-            <input type="submit" class="btn btn-primary mr-1" [disabled]="!domEntryForm.valid" [value]="btnAddOrEdit">
-            <button type="button" class="btn btn-warning mr-1" (click)="clearState()">Reset</button>
-            <button type="button" class="btn btn-danger mr-1" (click)="clearEntry()">Remove All</button>
-            <button type="button" class="btn btn-success mr-1" [disabled]="entryCount==0"
-              (click)="openModalExport()">Export
-              {{ entryCount }}</button>
-
-            <button type="button" class="btn btn-primary" (click)="openModalSettings()">Settings</button>
-
-          </div>
-        </form>
-      </tab>
-
-      <tab heading="Entries List">
+      <tab heading="Entries Template">
         <app-domentries></app-domentries>
       </tab>
 
+      <tab heading="{{ btnAddOrEdit }} Entry">
+          <form [formGroup]="domEntryForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <input formControlName="id" hidden>
+              <input type="number" class="form-control" formControlName="amount" placeholder="Add an amount">
+              <input type="text" class="form-control" formControlName="mandateId" placeholder="Add mandate id">
+  
+              <input type="date" class="form-control" required pattern="\d{4}-\d{2}-\d{2}"
+                formControlName="mandateStartDate" placeholder="Add mandate starting date">
+  
+              <input type="text" class="form-control" formControlName="clientName" placeholder="Add client name">
+              <input type="text" class="form-control" formControlName="clientIban" placeholder="Add iban number">
+              <input type="text" class="form-control" formControlName="endToEndReference"
+                placeholder="End-to-End Reference">
+              <input type="text" class="form-control " formControlName="communication" placeholder="Communication">
+            </div>
+  
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary mr-1" [disabled]="!domEntryForm.valid" value="Save">
+              <button type="button" class="btn btn-warning mr-1" (click)="clearState()">Clear</button>
+              <button type="button" class="btn btn-success mr-1" [disabled]="entryCount==0"
+                (click)="openModalExport()">Generate XML
+                {{ entryCount }}</button>
+              <button type="button" class="btn btn-primary" (click)="openModalSettings()">Settings</button>
+            </div>
+          </form>
+        </tab>
+          
       <tab heading="Entries Json">
         <pre class="card card-block card-header">{{ domJson | json }}</pre>
       </tab>
