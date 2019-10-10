@@ -99,7 +99,8 @@ export class DomEntriesComponent implements OnInit {
 
     // try a list for keys and values
     // example: ignore 'token' and 'user' items
-    this.localStorageItems = [];
+
+    /* this.localStorageItems = [];
     this.localStorageItemValues = [];
     for (let i = 0, len = localStorage.length; i < len; i++) {
       const key = localStorage.key(i);
@@ -111,6 +112,24 @@ export class DomEntriesComponent implements OnInit {
         this.localStorageItemValues.push(value);
 
         console.log(key + ' => ' + value);
+      }
+    } */
+
+    const domToSearch = 'domClient_';
+    const lengthOfSearch = domToSearch.length;
+    this.localStorageItems = [];
+    this.localStorageItemValues = [];
+    for (let i = 0, len = localStorage.length; i < len; i++) {
+      const key = localStorage.key(i);
+      if (key.substring(0, lengthOfSearch) === domToSearch) {
+        const value = localStorage[key];
+        const itemDescription = key.substring(lengthOfSearch);
+        this.localStorageItems.push(itemDescription);
+        this.localStorageItemValues.push(value);
+
+        console.log(domToSearch + itemDescription + ' (key)' + ' => ' + value);
+      } else {
+        // skip
       }
     }
   }

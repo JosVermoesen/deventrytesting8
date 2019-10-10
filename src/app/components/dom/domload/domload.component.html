@@ -9,16 +9,27 @@
     <div class="form-group">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Group Type</label>
+          <label class="input-group-text" for="inputGroupSelect01">Choose Group</label>
         </div>
-        <select class="custom-select" id="inputGroupSelect01" formControlName="groupType">
+        <select (change)="onChangeGroupType($event.target.value)" class="custom-select" id="inputGroupSelect01"
+          formControlName="groupType">
           <option value="domClient_">Clients</option>
           <option value="domList_">Lists</option>
           <option value="domLogXML_">Generated XML</option>
         </select>
       </div>
 
-      <input type="text" class="form-control" formControlName="name" placeholder="Description">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect02">Description</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect02" formControlName="name">
+          <option *ngFor="let name of localStorageItems" [selected]="name.selected == true" [value]="name">{{name}}
+          </option>
+        </select>
+      </div>
+
+      <!-- <input type="text" class="form-control" formControlName="name" placeholder="Description"> -->
     </div>
 
     <div class="form-group">
@@ -30,7 +41,7 @@
         <button type="button" class="btn btn-primary" disabled>
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
           Load</button>
-      </div>      
+      </div>
     </div>
   </form>
 </div>

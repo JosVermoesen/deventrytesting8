@@ -18,13 +18,14 @@ export class DomLoadComponent implements OnInit {
   domLoadForm: FormGroup;
   domJson: DomEntry[];
 
+  localStorageItems = [];
+  chosenDescription: string;
+  localStorageItemValues = [];
+
   constructor(public bsModalRef: BsModalRef, private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.domLoadForm = this.fb.group({
-      groupType: [null, Validators.required],
-      name: [null, Validators.required]
-    });
+    this.onChangeGroupType('domClient_');
   }
 
   onSubmit() {
@@ -37,5 +38,29 @@ export class DomLoadComponent implements OnInit {
       localStorage.setItem('domEntries_Template', JSON.stringify(this.domJson));
       location.reload();
     }
+  }
+
+  onChangeGroupType(groupType) {
+    const domToSearch = groupType; // 'domClient_';
+    const lengthOfSearch = domToSearch.length;
+    this.localStorageItems = [];
+    this.localStorageItemValues = [];
+    for (let i = 0, len = localStorage.length; i < len; i++) {
+      const key = localStorage.key(i);
+      if (key.substring(0, lengthOfSearch) === domToSearch) {
+        const value = localStorage[key];
+        const itemDescription = key.substring(lengthOfSearch);
+        this.localStorageItems.push(itemDescription);
+        this.localStorageItemValues.push(value);
+
+        console.log(domToSearch + itemDescription + ' (key)' + ' => ' + value);
+      } else {
+        // skip
+      }
+    }
+    this.domLoadForm = this.fb.group({
+      groupType: [groupType, Validators.required],
+      name: [null, Validators.required]
+    });
   }
 }
