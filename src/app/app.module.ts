@@ -6,19 +6,8 @@ import { DomEntryComponent } from './components/dom/domentry/domentry.component'
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
-
-import { NavbarComponent } from './components/navbar/navbar.component';
-
-import { JournalService } from './_services/journal.service';
-import { JournalEntryComponent } from './components/journal/journalentry/journalentry.component';
-import { JournalEntriesComponent } from './components/journal/journalentries/journalentries.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DomExportComponent } from './components/dom/domexport/domexport.component';
-import { DomService } from './_services/dom.service';
-import { DomSettingsComponent } from './components/dom/domsettings/domsettings.component';
+
 import {
   ButtonsModule,
   TabsModule,
@@ -26,6 +15,18 @@ import {
   ModalModule,
   BsModalRef
 } from 'ngx-bootstrap';
+
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { JournalService } from './_services/journal.service';
+import { JournalEntryComponent } from './components/journal/journalentry/journalentry.component';
+import { JournalEntriesComponent } from './components/journal/journalentries/journalentries.component';
+
+import { DomExportComponent } from './components/dom/domexport/domexport.component';
+import { DomService } from './_services/dom.service';
+import { DomSettingsComponent } from './components/dom/domsettings/domsettings.component';
+import { CheckersComponent } from './components/checkers/checkers.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {
     DomSettingsComponent,
     DomExportComponent,
     DomLoadComponent,
-    DomSaveComponent
+    DomSaveComponent,
+    CheckersComponent
   ],
   imports: [
     BrowserModule,

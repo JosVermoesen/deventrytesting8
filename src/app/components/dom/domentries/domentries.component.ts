@@ -127,7 +127,7 @@ export class DomEntriesComponent implements OnInit {
         this.localStorageItems.push(itemDescription);
         this.localStorageItemValues.push(value);
 
-        console.log(domToSearch + itemDescription + ' (key)' + ' => ' + value);
+        // console.log(domToSearch + itemDescription + ' (key)' + ' => ' + value);
       } else {
         // skip
       }

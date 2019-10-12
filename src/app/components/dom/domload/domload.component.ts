@@ -19,25 +19,12 @@ export class DomLoadComponent implements OnInit {
   domJson: DomEntry[];
 
   localStorageItems = [];
-  chosenDescription: string;
   localStorageItemValues = [];
 
   constructor(public bsModalRef: BsModalRef, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.onChangeGroupType('domClient_');
-  }
-
-  onSubmit() {
-    if (this.domLoadForm.valid) {
-      this.locationReload = true;
-      const itemName =
-        this.domLoadForm.value.groupType + this.domLoadForm.value.name;
-
-      this.domJson = JSON.parse(localStorage.getItem(itemName));
-      localStorage.setItem('domEntries_Template', JSON.stringify(this.domJson));
-      location.reload();
-    }
   }
 
   onChangeGroupType(groupType) {
@@ -53,14 +40,30 @@ export class DomLoadComponent implements OnInit {
         this.localStorageItems.push(itemDescription);
         this.localStorageItemValues.push(value);
 
-        console.log(domToSearch + itemDescription + ' (key)' + ' => ' + value);
+        // console.log(domToSearch + itemDescription + ' (key)' + ' => ' + value);
       } else {
         // skip
       }
     }
     this.domLoadForm = this.fb.group({
       groupType: [groupType, Validators.required],
-      name: [null, Validators.required]
+      name: [this.localStorageItems[0], Validators.required],
+      deleteAfterLoading: [false]
     });
+  }
+
+  onSubmit() {
+    if (this.domLoadForm.valid) {
+      this.locationReload = true;
+      const itemName =
+        this.domLoadForm.value.groupType + this.domLoadForm.value.name;
+      this.domJson = JSON.parse(localStorage.getItem(itemName));
+      localStorage.setItem('domEntries_Template', JSON.stringify(this.domJson));
+
+      if (this.domLoadForm.value.deleteAfterLoading === true) {
+        localStorage.removeItem(itemName);
+      }
+      location.reload();
+    }
   }
 }

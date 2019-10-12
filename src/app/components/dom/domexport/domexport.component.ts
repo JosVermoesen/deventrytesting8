@@ -124,11 +124,7 @@ export class DomExportComponent implements OnInit {
       ];
 
       this.domData = JSON.parse(localStorage.getItem('domSettings_Template'));
-      if (this.domData == null) {
-        console.log('empty settings');
-      } else {
-        console.log('not empty');
-      }
+
       this.domSettingsData = [
         this.domData.name,
         this.domData.enterpriseNumber,
@@ -223,7 +219,7 @@ export class DomExportComponent implements OnInit {
         stringToReplace,
         this.templateClients
       );
-      console.log(this.templateDom);
+
       const blob = new Blob([this.templateDom], {
         type: 'text/plain;charset=utf-8'
       });
