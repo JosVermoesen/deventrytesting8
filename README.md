@@ -35,5 +35,7 @@ npm uninstall -g @angular/cli
 npm cache verify
 
 npm install -g @angular/cli@latest
-npm install -g ionic
 npm i -D electron@latest
+
+npm install -g ionic
+npm install @ionic/angular@latest --save
